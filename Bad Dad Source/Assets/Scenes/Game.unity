@@ -132,6 +132,7 @@ GameObject:
   - component: {fileID: 538502436}
   - component: {fileID: 538502438}
   - component: {fileID: 538502437}
+  - component: {fileID: 538502439}
   m_Layer: 5
   m_Name: CarSpeedText
   m_TagString: Untagged
@@ -254,6 +255,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 538502435}
   m_CullTransparentMesh: 0
+--- !u!114 &538502439
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 538502435}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2455c068a961fd04bbe5700c19358d69, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &693060466
 GameObject:
   m_ObjectHideFlags: 0
@@ -459,6 +472,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -2513308310279054509, guid: 110ec8b01e73f4042b6e51b3ae89b821,
+        type: 3}
+      propertyPath: speedDividend
+      value: 55
+      objectReference: {fileID: 0}
     - target: {fileID: 1164074347661414996, guid: 110ec8b01e73f4042b6e51b3ae89b821,
         type: 3}
       propertyPath: m_Name
@@ -631,6 +649,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 490655981008768204, guid: 33840c6cb67689f4a9f89e3c07e63006,
+        type: 3}
+      propertyPath: playerSpeed
+      value: 60
       objectReference: {fileID: 0}
     - target: {fileID: 490655981008768205, guid: 33840c6cb67689f4a9f89e3c07e63006,
         type: 3}

@@ -3,6 +3,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+//TODO Car acceleration
+//TODO 
+
 public class MoveCar : MonoBehaviour
 {
     [SerializeField] float playerSpeed = 1f;
@@ -25,19 +28,19 @@ public class MoveCar : MonoBehaviour
 
     private void DriveCar()
     {
-        // Move up.
-        if (Input.GetAxis("Vertical") > 0)
-        {
-            rb.velocity = new Vector2(0, playerSpeed);
-        }
-        // Move down.
-        else if (Input.GetAxis("Vertical") < 0)
-        {
-            rb.velocity = new Vector2(0, -playerSpeed);
-        }
+        //// Move up.
+        //if (Input.GetAxis("Vertical") > 0)
+        //{
+        //    rb.velocity = new Vector2(0, playerSpeed);
+        //}
+        //// Move down.
+        //else if (Input.GetAxis("Vertical") < 0)
+        //{
+        //    rb.velocity = new Vector2(0, -playerSpeed);
+        //}
 
         // Move right.
-        else if (Input.GetAxis("Horizontal") > 0)
+        if (Input.GetAxis("Horizontal") > 0)
         {
             rb.velocity = new Vector2(playerSpeed, 0);
         }
