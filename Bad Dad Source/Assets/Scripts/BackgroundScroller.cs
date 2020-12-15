@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class BackgroundScroller : MonoBehaviour
 {
-    [SerializeField] float backgroundScrollSpeed = 0.5f;
+    float playerSpeed;
     Material myMaterial;
     Vector2 offSet;
 
@@ -12,12 +12,35 @@ public class BackgroundScroller : MonoBehaviour
     void Start()
     {
         myMaterial = GetComponent<Renderer>().material;
-        offSet = new Vector2(0f, backgroundScrollSpeed);
+        
+    }
+
+    // Get the speed the player is supposed to be moving at from the MoveCar script's inputs.
+    private float SetPlayerSpeed()
+    {
+        // Utilize the player speed found in the MoveCar script. This keeps the inputs
+        // all in one script.
+        playerSpeed = FindObjectOfType<MoveCar>().GetPlayerSpeed();
+        Debug.Log("Player speed: " + playerSpeed);
+        return playerSpeed;
+    }
+
+    void MoveBackground()
+    {
+        // Call Set Player Speed method to find the player speed.
+        SetPlayerSpeed();
+
+        // Declare an "offset" that will be moving the texture, 
+        // lock it horizontally and move it based on the player's speed.
+        offSet = new Vector2(0f, playerSpeed);
+
+        // Change the background quad's texture offset aka the background.
+        myMaterial.mainTextureOffset += offSet * Time.deltaTime;
     }
 
     // Update is called once per frame
     void Update()
     {
-        myMaterial.mainTextureOffset += offSet * Time.deltaTime;
+        MoveBackground();
     }
 }
