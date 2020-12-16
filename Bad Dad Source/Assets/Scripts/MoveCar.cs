@@ -3,13 +3,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-//TODO Car acceleration
-//TODO Retweak horizontal car movement
-
 public class MoveCar : MonoBehaviour
 {
-    [SerializeField] float playerSpeed = 1f, playerHorizontalSpeed = 1f;
+    [SerializeField]
+    float playerSpeed = 1f, acceleration = 100f, deceleration = 200f, playerHorizontalSpeed = 2f;
     Rigidbody2D rb;
+    [SerializeField] bool canDriveBackwards = false;
 
     private void Start()
     {
@@ -26,19 +25,32 @@ public class MoveCar : MonoBehaviour
         return playerSpeed;
     }
 
-    private void DriveCar()
+    private void SetPlayerSpeed()
     {
-        //// Move up.
-        //if (Input.GetAxis("Vertical") > 0)
-        //{
-        //    rb.velocity = new Vector2(0, playerSpeed);
-        //}
-        //// Move down.
-        //else if (Input.GetAxis("Vertical") < 0)
-        //{
-        //    rb.velocity = new Vector2(0, -playerSpeed);
-        //}
+        
+        // Move up.
+        if (Input.GetAxis("Vertical") > 0)
+        {
+            playerSpeed += acceleration * Time.deltaTime;
+        }
+        // Move down.
+        else if (Input.GetAxis("Vertical") < 0)
+        {
+            if (playerSpeed >= 0)
+            {
+                playerSpeed -= deceleration * Time.deltaTime;
 
+                // Set player speed to 0 if canDriveBackwards is disabled and the speed goes below 0.
+                if (!canDriveBackwards && playerSpeed < 0)
+                {
+                    playerSpeed = 0;
+                }
+            }
+        }
+    }
+
+    private void TurnCar()
+    {
         // Move right.
         if (Input.GetAxis("Horizontal") > 0)
         {
@@ -54,5 +66,11 @@ public class MoveCar : MonoBehaviour
         {
             rb.velocity = new Vector2(0, 0);
         }
+    }
+
+    private void DriveCar()
+    {
+        SetPlayerSpeed();
+        TurnCar();
     }
 }

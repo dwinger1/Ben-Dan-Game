@@ -27,7 +27,9 @@ public class UIPlayerSpeedText : MonoBehaviour
         grossSpeed = FindObjectOfType<MoveCar>().GetPlayerSpeed();
         // Change player speed to an integer and then to text.
         speed = Mathf.RoundToInt(grossSpeed).ToString();
+
         // Set the User Interface Speed Text to the player's speed.
+        //TODO display speed as a positive number when driving backwards.
         playerSpeedText.SetText(speed + " MPH");
     }
 
