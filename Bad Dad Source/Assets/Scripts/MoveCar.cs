@@ -4,11 +4,11 @@ using System.Collections.Generic;
 using UnityEngine;
 
 //TODO Car acceleration
-//TODO 
+//TODO Retweak horizontal car movement
 
 public class MoveCar : MonoBehaviour
 {
-    [SerializeField] float playerSpeed = 1f;
+    [SerializeField] float playerSpeed = 1f, playerHorizontalSpeed = 1f;
     Rigidbody2D rb;
 
     private void Start()
@@ -42,12 +42,12 @@ public class MoveCar : MonoBehaviour
         // Move right.
         if (Input.GetAxis("Horizontal") > 0)
         {
-            rb.velocity = new Vector2(playerSpeed, 0);
+            rb.velocity = new Vector2(playerHorizontalSpeed, 0);
         }
         // Move left.
         else if (Input.GetAxis("Horizontal") < 0)
         {
-            rb.velocity = new Vector2(-playerSpeed, 0);
+            rb.velocity = new Vector2(-playerHorizontalSpeed, 0);
         }
 
         else
