@@ -16,20 +16,17 @@ public class BackgroundScroller : MonoBehaviour
      * 
      */
 
-    // Start is called before the first frame update
     void Start()
     {
         myMaterial = GetComponent<Renderer>().material;
-        
     }
 
     // Get the speed the player is supposed to be moving at from the MoveCar script's inputs.
-    private float SetPlayerSpeed()
+    private float Speed()
     {
         // Utilize the player speed found in the MoveCar script. This keeps the inputs
         // all in one script.
         playerSpeed = FindObjectOfType<MoveCar>().GetPlayerSpeed();
-        Debug.Log("Player speed: " + playerSpeed);
         return playerSpeed;
     }
 
@@ -45,7 +42,7 @@ public class BackgroundScroller : MonoBehaviour
 
     private void MoveBackground()
     {
-        SetBackgroundSpeed(SetPlayerSpeed());
+        SetBackgroundSpeed(Speed());
 
         // Change the background quad's texture offset aka the background.
         myMaterial.mainTextureOffset += offSet * Time.deltaTime;

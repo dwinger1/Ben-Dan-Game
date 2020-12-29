@@ -1,14 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 using TMPro;
 
-/// <summary>
-/// This script updates the CarSpeedText gameobject text.
-/// </summary>
-
-public class UIPlayerSpeedText : MonoBehaviour
+public class UISpeedText : MonoBehaviour
 {
     float grossSpeed;
     string speed;
@@ -19,6 +14,7 @@ public class UIPlayerSpeedText : MonoBehaviour
         // Initialize Speed Text.
         playerSpeedText = GetComponent<TextMeshProUGUI>();
         playerSpeedText.SetText("0 MPH");
+        Debug.Log("PlayerSpeed script is a go!");
     }
 
     private void SetSpeedText()
