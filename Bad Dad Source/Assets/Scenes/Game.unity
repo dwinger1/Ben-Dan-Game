@@ -121,6 +121,24 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &348885993 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 490655981008768200, guid: 33840c6cb67689f4a9f89e3c07e63006,
+    type: 3}
+  m_PrefabInstance: {fileID: 490655981257430129}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &348885994
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 348885993}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2dda5b5e67e8852418dff786ac5d11d2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &538502435
 GameObject:
   m_ObjectHideFlags: 0
@@ -264,12 +282,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 538502435}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2455c068a961fd04bbe5700c19358d69, type: 3}
+  m_Script: {fileID: 11500000, guid: b1772459675dfd24b989b3511f109bae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  grossSpeed: 0
-  speed: 
-  playerSpeedText: {fileID: 0}
 --- !u!1 &693060466
 GameObject:
   m_ObjectHideFlags: 0
@@ -883,6 +898,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: car
+      objectReference: {fileID: 0}
+    - target: {fileID: 2744826984403834683, guid: 1a7eed14879602d4ca0a0eaed0f7207f,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2744826984403834686, guid: 1a7eed14879602d4ca0a0eaed0f7207f,
         type: 3}

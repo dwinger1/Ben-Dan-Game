@@ -8,7 +8,7 @@ using UnityEngine;
 
 public class PlayerStats : MonoBehaviour
 {
-    private int playerHealth;
+    [SerializeField] private int playerHealth;
     
     public int GetPlayerHealth()
     {
