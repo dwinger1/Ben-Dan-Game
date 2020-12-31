@@ -10,7 +10,6 @@ using UnityEngine;
 
 public class MoveCar : MonoBehaviour
 {
-    [Header("Player Speed Variables")]
     [SerializeField]
     float playerSpeed = 1f, acceleration = 100f, deceleration = 200f, playerHorizontalSpeed = 2f;
     Rigidbody2D rb;

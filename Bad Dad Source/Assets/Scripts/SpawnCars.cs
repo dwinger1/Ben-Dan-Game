@@ -2,6 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// OBSOLETE CODE
+/// 
+/// </summary>
+
 public class SpawnCars : MonoBehaviour
 {
     [SerializeField] GameObject car;
