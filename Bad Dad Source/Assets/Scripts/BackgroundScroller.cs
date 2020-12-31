@@ -2,6 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// This script changes the background speed based on how fast the player is moving.
+/// </summary>
+
 public class BackgroundScroller : MonoBehaviour
 {
     float playerSpeed;
@@ -10,14 +14,9 @@ public class BackgroundScroller : MonoBehaviour
     Material myMaterial;
     Vector2 offSet;
 
-    /*
-     * Get player speed from MoveCar
-     * Tune the number so that the background scroll speed is going at a different rate
-     * 
-     */
-
     void Start()
     {
+        // Get the background material.
         myMaterial = GetComponent<Renderer>().material;
     }
 
@@ -32,23 +31,24 @@ public class BackgroundScroller : MonoBehaviour
 
     private void SetBackgroundSpeed(float playerSpeed)
     {
+        // Set the background speed the same as the player speed, but tune it with speedDividend to 
+        // make a more realistic background movement amount.
         backgroundSpeed = playerSpeed / speedDividend;
-        // Declare an "offset" that will be moving the texture, 
-        // lock it horizontally and move it based on the player's speed.
-        offSet = new Vector2(0f, backgroundSpeed);
 
-        Debug.Log(" ps " + playerSpeed + " bgs " + backgroundSpeed);
+        // Declare an "offset" that will be moving the texture, 
+        // lock it horizontally, and move it based on the player's speed.
+        offSet = new Vector2(0f, backgroundSpeed);
     }
 
     private void MoveBackground()
     {
+        // Change the offSet amount.
         SetBackgroundSpeed(Speed());
 
-        // Change the background quad's texture offset aka the background.
+        // Move the background using the offSet amount.
         myMaterial.mainTextureOffset += offSet * Time.deltaTime;
     }
 
-    // Update is called once per frame
     void Update()
     {
         MoveBackground();
