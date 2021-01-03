@@ -8,8 +8,10 @@ public class CarSpawner : MonoBehaviour
 {
     bool spawn = true;
 
+    [SerializeField] float speedDividend = 2; // Make the speed of cars match the speed of the background.
+
     [Header("Minimum and maximum time between new cars")]
-    [SerializeField] float spawnMinTime = 5f, spawnMaxTime = 10f;
+    [SerializeField] float spawnMinTime = 1f, spawnMaxTime = 5f;
 
     [SerializeField] Car[] carPrefab; // Allow editor to drag and drop any number of car prefabs onto this spawner.
 
@@ -23,10 +25,16 @@ public class CarSpawner : MonoBehaviour
         }
     }
 
+    public float GetSpeedDividend()
+    {
+        return speedDividend;
+    }
+
     private Car SpawnCar()
     {
         // Pick a random car from the list of prefabs added to this spawner.
         int carIndex = Random.Range(0, carPrefab.Length);
+        Debug.Log("Car prefab from spawn car" + carPrefab);
         return carPrefab[carIndex];
     }
 
