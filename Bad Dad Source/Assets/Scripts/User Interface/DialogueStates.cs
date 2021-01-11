@@ -2,17 +2,21 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DialogueStates : MonoBehaviour
+[CreateAssetMenu (menuName = "Dialogue State")]
+public class DialogueStates : ScriptableObject
 {
-    // Start is called before the first frame update
-    void Start()
+    [TextArea(10, 14)] [SerializeField] string dialogueText; // The editor's textbox input in the inspector.
+    [SerializeField] DialogueStates[] nextState; // State machine states list
+    
+    // Enable access to this object's text.
+    public string GetText()
     {
-        
+        return dialogueText;
     }
 
-    // Update is called once per frame
-    void Update()
+    // Enable access to this object's next state
+    public DialogueStates[] GetNextState()
     {
-        
+        return nextState;
     }
 }
