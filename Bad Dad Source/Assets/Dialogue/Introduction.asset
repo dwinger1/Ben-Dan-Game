@@ -12,5 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ce2aeda6fa750ea42a84341e5768c8ae, type: 3}
   m_Name: Introduction
   m_EditorClassIdentifier: 
-  dialogueText: 
-  nextState: []
+  dialogueText: Hello world
+  nextState:
+  - {fileID: 0}
+  - {fileID: 0}
+  willPauseGame: 1

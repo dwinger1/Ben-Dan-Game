@@ -13,6 +13,8 @@ public class DialogueStates : ScriptableObject
     [TextArea(10, 14)] [SerializeField] string dialogueText; // The editor's textbox input in the inspector.
     [SerializeField] DialogueStates[] nextState; // State machine states list
     [SerializeField] bool willPauseGame = true;
+    [SerializeField] bool gameOver = false;
+    [SerializeField] int givePlayerMoney, takePlayerMoney;
     
     // Enable access to this object's text.
     public string GetText()
@@ -28,11 +30,13 @@ public class DialogueStates : ScriptableObject
 
     private void Pause()
     {
-        if (willPauseGame)
-        {
-
+    //TODO There's a chance we will use a game-wide bolean that will be passed through most game mechanics to pause the game.
             /*https://gamedevbeginner.com/the-right-way-to-pause-the-game-in-unity/
              * */
-        }
+    }
+
+    private void GameOver()
+    {
+        //TODO activate game over scene.
     }
 }
