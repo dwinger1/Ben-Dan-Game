@@ -23,10 +23,9 @@ public class Car : MonoBehaviour
 
     private float UpdateSpeed()
     {
+        // Take player speed, set speed of car to player speed divided by carspawner speed dividend.
         speed = speed + FindObjectOfType<MoveCar>().GetPlayerSpeed();
-        Debug.Log("speed1" + speed);
         speed /= GetComponentInParent<CarSpawner>().GetSpeedDividend();
-        Debug.Log("speed2" + speed);
         return speed;
     }
 
