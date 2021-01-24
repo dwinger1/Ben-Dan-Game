@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -16,10 +17,12 @@ public class DialogueManager : MonoBehaviour
         sentences = new Queue<string>();
     }
 
-    public void StartDialogue(Dialogue dialogue) // pass in a dialogue to use
+    public void StartDialogue(Dialogue dialogue) // Argument: pass in a dialogue to use
     {
+        // Set the animator to the IsOpen state.
         animator.SetBool("IsOpen", true);
-        Debug.Log("Starting conversation with " + dialogue.name);
+
+        // Change the name of the dialogue name component.
         nameText.text = dialogue.name;
 
         // Clear out any sentences from previous conversation from the Queue.
@@ -30,7 +33,13 @@ public class DialogueManager : MonoBehaviour
         {
             sentences.Enqueue(sentence);
         }
+
         DisplayNextSentence();
+    }
+
+    private void PickState()
+    {
+        throw new NotImplementedException();
     }
 
     public void DisplayNextSentence()
@@ -53,9 +62,11 @@ public class DialogueManager : MonoBehaviour
         StartCoroutine(TypeSentence(sentence));
     }
 
+    // Sentence typing animation.
     IEnumerator TypeSentence (string sentence)
     {
         dialogueText.text = "";
+        // Take the next letter in the sentence and append it to the text component.
         foreach (char letter in sentence.ToCharArray())
         {
             dialogueText.text += letter;
@@ -64,8 +75,9 @@ public class DialogueManager : MonoBehaviour
     }
 
     public void EndDialogue()
-        {
-            animator.SetBool("IsOpen", false);
-            Debug.Log("End of conversation");
-        }
+    // Set the dialogue to the end state.
+    {
+        animator.SetBool("IsOpen", false);
+        Debug.Log("End of conversation");
+    }
 }
