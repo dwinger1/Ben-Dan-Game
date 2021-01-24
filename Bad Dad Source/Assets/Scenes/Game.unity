@@ -194,9 +194,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dialogue:
     name: Person1
+    goodbye: Yup, seeya!
     sentences:
     - Hey! What's up?
     - I hear you're making a game?
+    branchingDialogue:
+    - {fileID: 11400000, guid: 08f94bef7c47efd41b79bbf9ae6da7b8, type: 2}
+    - {fileID: 0}
+    triggerGameOver: 0
 --- !u!114 &398353437
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -320,6 +325,7 @@ MonoBehaviour:
   nameText: {fileID: 1893959926}
   dialogueText: {fileID: 1173920637}
   animator: {fileID: 1068175304}
+  continueButton: {fileID: 701560406}
 --- !u!4 &531621942
 Transform:
   m_ObjectHideFlags: 0

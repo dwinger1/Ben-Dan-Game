@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu (menuName = "Dialogue State")]
+//[CreateAssetMenu (menuName = "Dialogue State")]
 public class DialogueStates : ScriptableObject
 {
     //TODO create bool for pausing game in the background when dialogue prompts

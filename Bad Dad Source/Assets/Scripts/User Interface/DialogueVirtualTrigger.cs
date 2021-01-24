@@ -1,8 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
-public class DialogueTrigger : MonoBehaviour
+[CreateAssetMenu(menuName = "Dialogue State")]
+public class DialogueVirtualTrigger : ScriptableObject
 {
     public Dialogue dialogue;
 
@@ -11,4 +11,3 @@ public class DialogueTrigger : MonoBehaviour
         FindObjectOfType<DialogueManager>().StartDialogue(dialogue);
     }
 }
-

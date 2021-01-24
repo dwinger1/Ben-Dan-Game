@@ -9,6 +9,8 @@ public class DialogueManager : MonoBehaviour
     public Text nameText;
     public Text dialogueText;
     public Animator animator;
+    public Text continueButton;
+    private string goodbye;
 
     private Queue<string> sentences;
 
@@ -28,12 +30,16 @@ public class DialogueManager : MonoBehaviour
         // Clear out any sentences from previous conversation from the Queue.
         sentences.Clear();
 
+        continueButton.text = "CONTINUE >>";
+        //TODO clear the previous option buttons
+
         // Load up each sentence into the queue.
         foreach (string sentence in dialogue.sentences)
         {
             sentences.Enqueue(sentence);
         }
 
+        goodbye = dialogue.goodbye;
         DisplayNextSentence();
     }
 
@@ -49,9 +55,14 @@ public class DialogueManager : MonoBehaviour
      * Consider also using an if statement to check for which button gets pressed or have something on the dialogue sentence itself to branch off into options.
      * */
     {
+        // Say goodbye when reaching the last sentence.
+        if (sentences.Count == 1)
+        {
+            continueButton.text = goodbye;
+        }
         if (sentences.Count == 0)
             {
-                EndDialogue();
+            EndDialogue();
                 return;
             }
         // Remove the next sentence from the queue or "dequeue"
@@ -74,8 +85,20 @@ public class DialogueManager : MonoBehaviour
         }
     }
 
+    // First option button
+    public void Option1()
+    {
+        throw new NotImplementedException();
+    }
+
+    // Second option button
+    public void Option2()
+    {
+        throw new NotImplementedException();
+    }
+
+    // End dialogue
     public void EndDialogue()
-    // Set the dialogue to the end state.
     {
         animator.SetBool("IsOpen", false);
         Debug.Log("End of conversation");
