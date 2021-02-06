@@ -1,23 +1,21 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿//using System.Collections;
+//using System.Collections.Generic;
+//using UnityEngine;
 
-[System.Serializable]
+//[System.Serializable]
 
-public class Dialogue
-{
-    public string name;
-    [Tooltip("What the user will see as a reply before closing the dialogue box.")]
-    
+//public class Dialogue : ScriptableObject
+//{
+//    public string NPCname;
 
-    [TextArea(3, 10)]
-    public string[] sentences; // NPC dialogue text.
+//    public string DialogueID; // What will we call this Dialogue Object? E.g. Dialogue_Yes.
 
-    [TextArea(3, 10)]
-    public string[] responses; // Player responses.
+//    [TextArea(3, 10)]
+//    public string[] sentences; // NPC dialogue text.
 
-    public string goodbye;
+//    [TextArea(3, 10)]
+//    public string[] responses; // Player responses.
 
-    public DialogueTrigger[] dialogeStates;
+//    IDictionary<string, DialogueObject> response = new Dictionary<string, DialogueObject>();
 
-}
+//}

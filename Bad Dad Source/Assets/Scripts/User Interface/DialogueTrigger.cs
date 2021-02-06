@@ -7,7 +7,8 @@ using UnityEngine;
 /// </summary>
 public class DialogueTrigger : MonoBehaviour
 {
-    public Dialogue dialogue; // We will be using the serializable attributes from the Dialogue script.
+
+    [SerializeField] public DialogueObject dialogue; // We will be using the serializable attributes from the DialogueObject script.
 
     public void TriggerDialogue()
     {
