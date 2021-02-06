@@ -12,7 +12,7 @@ public class DialogueManager : MonoBehaviour
     public Text continueButton;
     private string goodbye;
 
-    private Queue<string> sentences;
+    private Queue<string> sentences; // change this to an array
 
     private void Start()
     {
@@ -24,7 +24,7 @@ public class DialogueManager : MonoBehaviour
         // Set the animator to the IsOpen state.
         animator.SetBool("IsOpen", true);
 
-        // Change the name of the dialogue name component.
+        // Set the NPC name to the DialogueManager's nameText. dialogue.name is coming from the serializable component of the DialogueTrigger.
         nameText.text = dialogue.name;
 
         // Clear out any sentences from previous conversation from the Queue.
@@ -43,23 +43,15 @@ public class DialogueManager : MonoBehaviour
         DisplayNextSentence();
     }
 
-    private void PickState()
-    {
-        throw new NotImplementedException();
-    }
-
     public void DisplayNextSentence()
     // This method gets called by the continue button.
-    //TODO Dialogue states: enable the option for the dialogue to have a 
-    /* state from which to choose. Load in the state machine state and have that call a dialoge trigger.
-     * Consider also using an if statement to check for which button gets pressed or have something on the dialogue sentence itself to branch off into options.
-     * */
     {
         // Say goodbye when reaching the last sentence.
         if (sentences.Count == 1)
         {
             continueButton.text = goodbye;
         }
+        // Close dialogue at the end of the sentences.
         if (sentences.Count == 0)
             {
             EndDialogue();
@@ -83,18 +75,6 @@ public class DialogueManager : MonoBehaviour
             dialogueText.text += letter;
             yield return null;
         }
-    }
-
-    // First option button
-    public void Option1()
-    {
-        throw new NotImplementedException();
-    }
-
-    // Second option button
-    public void Option2()
-    {
-        throw new NotImplementedException();
     }
 
     // End dialogue
