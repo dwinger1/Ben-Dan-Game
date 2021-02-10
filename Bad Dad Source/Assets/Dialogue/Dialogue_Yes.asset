@@ -12,5 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9c109c4626aaed94abcc3786db62d20c, type: 3}
   m_Name: Dialogue_Yes
   m_EditorClassIdentifier: 
-  dialogue: []
+  dialogue:
+  - It works!
   responses: []

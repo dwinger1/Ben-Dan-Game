@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DialogueSystem : MonoBehaviour
+public class ResponseButton : MonoBehaviour
 {
-
+    public DialogueObject newDialogue;
 }
