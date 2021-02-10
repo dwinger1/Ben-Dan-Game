@@ -23,7 +23,7 @@ public class DialogueManager : MonoBehaviour
         sentences = new Queue<string>();
     }
 
-    public void StartDialogue(DialogueObject dialogue) // Argument: pass in a dialogue to use
+    public void StartDialogue(DialogueObject dialogue, string dialogueTriggerName) // Argument: pass in a dialogue to use
     {
         dialogueObject = dialogue;
         
@@ -31,7 +31,7 @@ public class DialogueManager : MonoBehaviour
         animator.SetBool("IsOpen", true);
 
         // Set the NPC name to the DialogueManager's nameText. dialogue.name is coming from the serializable component of the DialogueTrigger.
-        //nameText.text = dialogue.name;
+        nameText.text = dialogueTriggerName;
 
         HandleSentences(dialogue);
     }
