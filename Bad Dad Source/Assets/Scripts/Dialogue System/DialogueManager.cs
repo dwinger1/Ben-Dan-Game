@@ -6,13 +6,14 @@ using UnityEngine.UI;
 
 public class DialogueManager : MonoBehaviour
 {
-    public Text nameText; // This holds the name of the NPC the dialogue is coming from.
+    #region Initialization & Setup
+    [SerializeField] private Text nameText; // This holds the name of the NPC the dialogue is coming from.
     public Text dialogueText;
-    public Animator animator;
-    public Text continueButton;
-    private DialogueObject dialogueObject; // This is used to set what dialogue manager is currently using for displaying dialogue.
-    public GameObject responseButton;
-    public GameObject dialogueBox; // This is the dialogue box GUI container that holds the location of all the dialogue GUI components...
+    [SerializeField] private Animator animator;
+    [SerializeField] private Text continueButton;
+    private DialogueObject dialogueObject; // This is used to set what Dialogue Object is currently being used.
+    [SerializeField] private GameObject responseButton; // This holds a response button prefab.
+    [SerializeField] private GameObject dialogueBox; // This is the dialogue box GUI container that holds the location of all the dialogue GUI components...
                                      // We use it in this script to move response button positions.
     [SerializeField] private int offSet = 0; // This is used to move each new response button so that they don't display overtop each other.
 
@@ -22,7 +23,7 @@ public class DialogueManager : MonoBehaviour
     {
         sentences = new Queue<string>();
     }
-
+    
     public void StartDialogue(DialogueObject dialogue, string dialogueTriggerName) // Argument: pass in a dialogue to use
     {
         dialogueObject = dialogue;
@@ -35,7 +36,9 @@ public class DialogueManager : MonoBehaviour
 
         HandleSentences(dialogue);
     }
+    #endregion
 
+    #region Dialogue Display Logic
     private void HandleSentences(DialogueObject dialogue) //TODO Use this as an OnClick event in the responses?
     {
         // Clear out any sentences from previous conversation from the Queue.
@@ -77,6 +80,27 @@ public class DialogueManager : MonoBehaviour
         StartCoroutine(TypeSentence(sentence));
     }
 
+    // Sentence typing animation.
+    IEnumerator TypeSentence(string sentence)
+    {
+        dialogueText.text = "";
+        // Take the next letter in the sentence and append it to the text component.
+        foreach (char letter in sentence.ToCharArray())
+        {
+            dialogueText.text += letter;
+            yield return null;
+        }
+    }
+
+    // End dialogue
+    public void EndDialogue()
+    {
+        animator.SetBool("IsOpen", false);
+        Debug.Log("End of conversation");
+    }
+    #endregion
+
+    #region Dialogue Responses
     private void HandleResponses()
     {
         offSet = 0; // Initialize offSet to 0.
@@ -123,24 +147,5 @@ public class DialogueManager : MonoBehaviour
     // Create a new button for each response text item in the array.
     // Set the button text to the responseText.
     // Upon pressing the button, set the DialogueObject for this script to the linked response DialogueObject.
-
-
-    // Sentence typing animation.
-    IEnumerator TypeSentence (string sentence)
-    {
-        dialogueText.text = "";
-        // Take the next letter in the sentence and append it to the text component.
-        foreach (char letter in sentence.ToCharArray())
-        {
-            dialogueText.text += letter;
-            yield return null;
-        }
-    }
-
-    // End dialogue
-    public void EndDialogue()
-    {
-        animator.SetBool("IsOpen", false);
-        Debug.Log("End of conversation");
-    }
+    #endregion
 }
