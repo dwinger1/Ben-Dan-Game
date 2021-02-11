@@ -486,18 +486,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 490655981008768204, guid: 33840c6cb67689f4a9f89e3c07e63006,
         type: 3}
+      propertyPath: brakeSpeed
+      value: 0.07
+      objectReference: {fileID: 0}
+    - target: {fileID: 490655981008768204, guid: 33840c6cb67689f4a9f89e3c07e63006,
+        type: 3}
       propertyPath: playerSpeed
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 490655981008768204, guid: 33840c6cb67689f4a9f89e3c07e63006,
         type: 3}
       propertyPath: acceleration
-      value: 20
+      value: 0.02
       objectReference: {fileID: 0}
     - target: {fileID: 490655981008768204, guid: 33840c6cb67689f4a9f89e3c07e63006,
         type: 3}
       propertyPath: deceleration
-      value: 50
+      value: 0.01
       objectReference: {fileID: 0}
     - target: {fileID: 490655981008768205, guid: 33840c6cb67689f4a9f89e3c07e63006,
         type: 3}
@@ -512,7 +517,7 @@ PrefabInstance:
     - target: {fileID: 490655981008768205, guid: 33840c6cb67689f4a9f89e3c07e63006,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -4.87
+      value: -1.88
       objectReference: {fileID: 0}
     - target: {fileID: 490655981008768205, guid: 33840c6cb67689f4a9f89e3c07e63006,
         type: 3}
@@ -657,6 +662,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 8702561869859904765, guid: 20d575dfaa271ee40b364690cafdd34e,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -357.9
+      objectReference: {fileID: 0}
     - target: {fileID: 8702561870259830394, guid: 20d575dfaa271ee40b364690cafdd34e,
         type: 3}
       propertyPath: m_Pivot.x
@@ -772,5 +782,20 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 531621941}
+    - target: {fileID: 8702561870707707590, guid: 20d575dfaa271ee40b364690cafdd34e,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8702561871111202072, guid: 20d575dfaa271ee40b364690cafdd34e,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8702561871535984632, guid: 20d575dfaa271ee40b364690cafdd34e,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -400.1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 20d575dfaa271ee40b364690cafdd34e, type: 3}

@@ -11,7 +11,10 @@ using UnityEngine;
 public class MoveCar : MonoBehaviour
 {
     [SerializeField]
-    float playerSpeed = 1f, acceleration = 100f, deceleration = 200f, playerHorizontalSpeed = 2f;
+    float playerSpeed = 1f, acceleration = 10f, deceleration = 2f, brakeSpeed = 200f,
+            playerHorizontalSpeed = 0.008f;
+    float turnInput;
+    bool gasInput, brakeInput;
     Rigidbody2D rb;
     [Space] [Header("Allow Player To Drive Backwards")]
     [SerializeField] bool canDriveBackwards = false;
@@ -28,27 +31,62 @@ public class MoveCar : MonoBehaviour
         DriveCar();
     }
 
+    private void DriveCar()
+    {
+        Inputs();
+        SetPlayerSpeed();
+        TurnCar(turnInput);
+    }
+
+    /// <summary>
+    /// Caches the different player inputs.
+    /// </summary>
+    private void Inputs()
+    {
+        turnInput = Input.GetAxis("Horizontal");
+        gasInput = Input.GetButton("Gas");
+        brakeInput = Input.GetButton("Brake");
+    }
+
+    #region Control Car Moving "Forward"
+    /// <summary>
+    /// Other scripts can use this method to find the player's speed.
+    /// </summary>
+    /// <returns>Returns float playerSpeed that's modified in the MoveCar script.</returns>
     public float GetPlayerSpeed()
     {
-        // Other scripts can use this method to find the player's speed.
         return playerSpeed;
     }
 
+    /// <summary>
+    /// This method will be used to control the player speed using the Gas and Brake inputs.
+    /// </summary>
     private void SetPlayerSpeed()
     {
-        
         // Speed up.
-        if (Input.GetAxis("Vertical") > 0)
+        if (gasInput)
         {
-            playerSpeed += acceleration * Time.deltaTime;
+            playerSpeed += acceleration;
+            Debug.Log("Player Speed Is " + playerSpeed);
         }
+
+        else if (!gasInput && playerSpeed >= 0)
+        {
+            playerSpeed -= deceleration;
+            if (playerSpeed < 0)
+            {
+                playerSpeed = 0;
+            }
+            Debug.Log("Player Speed Is Decelerating " + playerSpeed);
+        }
+
         // Brake.
-        else if (Input.GetAxis("Vertical") < 0)
+        if (brakeInput && playerSpeed >= 0)
         {
             if (playerSpeed >= 0)
             {
-                playerSpeed -= deceleration * Time.deltaTime;
-
+                playerSpeed -= brakeSpeed;
+                Debug.Log("Player is braking" + playerSpeed);
                 // Set player speed to 0 if canDriveBackwards is disabled and the speed goes below 0.
                 if (!canDriveBackwards && playerSpeed < 0)
                 {
@@ -57,32 +95,15 @@ public class MoveCar : MonoBehaviour
             }
         }
     }
-
-    private void TurnCar()
+    #endregion
+    #region Control Car "Turning"
+    /// <summary>
+    /// Move the player horizontally.
+    /// </summary>
+    /// <param name="input">Takes the input axis for steering the car.</param>
+    private void TurnCar(float input)
     {
-        //TODO Research a better, more smooth way to move the car horizontally.
-        
-        // Move right.
-        if (Input.GetAxis("Horizontal") > 0)
-        {
-            rb.velocity = new Vector2(playerHorizontalSpeed, 0);
-        }
-        // Move left.
-        else if (Input.GetAxis("Horizontal") < 0)
-        {
-            rb.velocity = new Vector2(-playerHorizontalSpeed, 0);
-        }
-
-        else
-        {
-            // Set horizontal movement to zero when no keys are pressed.
-            rb.velocity = new Vector2(0, 0);
-        }
+        transform.Translate(Vector2.right * input * playerHorizontalSpeed * Time.deltaTime);
     }
-
-    private void DriveCar()
-    {
-        SetPlayerSpeed();
-        TurnCar();
-    }
+    #endregion
 }
