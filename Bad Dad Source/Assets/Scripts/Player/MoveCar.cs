@@ -10,8 +10,9 @@ using UnityEngine;
 
 public class MoveCar : MonoBehaviour
 {
+    #region Initialization, Setup, Cache
     [SerializeField]
-    float playerSpeed = 1f, acceleration = 10f, deceleration = 2f, brakeSpeed = 200f,
+    float playerSpeed = 1f, maxPlayerSpeed, acceleration = 10f, deceleration = 2f, brakeSpeed = 200f,
             playerHorizontalSpeed = 0.008f;
     float turnInput;
     bool gasInput, brakeInput;
@@ -24,6 +25,17 @@ public class MoveCar : MonoBehaviour
         // Access player rigidbody component.
         rb = GetComponent<Rigidbody2D>();
     }
+
+    /// <summary>
+    /// Caches the different player inputs.
+    /// </summary>
+    private void Inputs()
+    {
+        turnInput = Input.GetAxis("Horizontal");
+        gasInput = Input.GetButton("Gas");
+        brakeInput = Input.GetButton("Brake");
+    }
+    #endregion
 
     private void Update()
     {
@@ -38,16 +50,6 @@ public class MoveCar : MonoBehaviour
         TurnCar(turnInput);
     }
 
-    /// <summary>
-    /// Caches the different player inputs.
-    /// </summary>
-    private void Inputs()
-    {
-        turnInput = Input.GetAxis("Horizontal");
-        gasInput = Input.GetButton("Gas");
-        brakeInput = Input.GetButton("Brake");
-    }
-
     #region Control Car Moving "Forward"
     /// <summary>
     /// Other scripts can use this method to find the player's speed.
@@ -58,6 +60,10 @@ public class MoveCar : MonoBehaviour
         return playerSpeed;
     }
 
+    public float GetMaxPlayerSpeed()
+    {
+        return maxPlayerSpeed;
+    }
     /// <summary>
     /// This method will be used to control the player speed using the Gas and Brake inputs.
     /// </summary>
@@ -66,7 +72,15 @@ public class MoveCar : MonoBehaviour
         // Speed up.
         if (gasInput)
         {
-            playerSpeed += acceleration;
+            if (playerSpeed < maxPlayerSpeed)
+            {
+                playerSpeed += acceleration;
+            }
+            else
+            {
+                playerSpeed = maxPlayerSpeed;
+            }
+
             Debug.Log("Player Speed Is " + playerSpeed);
         }
 

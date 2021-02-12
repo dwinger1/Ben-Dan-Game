@@ -39,7 +39,7 @@ public class DialogueManager : MonoBehaviour
     #endregion
 
     #region Dialogue Display Logic
-    private void HandleSentences(DialogueObject dialogue) //TODO Use this as an OnClick event in the responses?
+    private void HandleSentences(DialogueObject dialogue)
     {
         // Clear out any sentences from previous conversation from the Queue.
         sentences.Clear();
