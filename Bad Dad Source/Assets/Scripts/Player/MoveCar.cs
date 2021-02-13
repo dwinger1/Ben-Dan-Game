@@ -12,12 +12,14 @@ public class MoveCar : MonoBehaviour
 {
     #region Initialization, Setup, Cache
     [SerializeField]
-    float playerSpeed = 1f, maxPlayerSpeed, acceleration = 10f, deceleration = 2f, brakeSpeed = 200f,
+    float playerSpeed = 1f, maxPlayerSpeed, offRoadSpeed, acceleration = 10f, deceleration = 2f, brakeSpeed = 200f,
             playerHorizontalSpeed = 0.008f;
+    float cacheMaxPlayerSpeed;
     float turnInput;
     bool gasInput, brakeInput, isOnRoad = true;
     Rigidbody2D rb;
-    [SerializeField] Collider2D road;
+    [SerializeField] Collider2D myCollider;
+    LayerMask roadLayer;
     [Space] [Header("Allow Player To Drive Backwards")]
     [SerializeField] bool canDriveBackwards = false;
 
@@ -25,6 +27,8 @@ public class MoveCar : MonoBehaviour
     {
         // Access player rigidbody component.
         rb = GetComponent<Rigidbody2D>();
+        cacheMaxPlayerSpeed = maxPlayerSpeed;
+        roadLayer = LayerMask.GetMask("Road");
     }
 
     /// <summary>
@@ -49,13 +53,6 @@ public class MoveCar : MonoBehaviour
         Inputs();
         SetPlayerSpeed(isOnRoad);
         TurnCar(turnInput);
-        OnTriggerExit2D(road);
-    }
-
-    
-    void OnTriggerExit2D(Collider2D road)
-    {
-        isOnRoad = false;
     }
 
     #region Control Car Moving "Forward"
@@ -77,10 +74,18 @@ public class MoveCar : MonoBehaviour
     /// </summary>
     private void SetPlayerSpeed(bool isOnRoad)
     {
-
         // Speed up.
         if (gasInput)
         {
+            if (CheckCarIsOnRoad())
+            {
+                maxPlayerSpeed = cacheMaxPlayerSpeed;
+            }
+            else
+            {
+                maxPlayerSpeed = offRoadSpeed;
+            }
+                
             if (playerSpeed < maxPlayerSpeed)
             {
                 playerSpeed += acceleration;
@@ -90,7 +95,7 @@ public class MoveCar : MonoBehaviour
                 playerSpeed = maxPlayerSpeed;
             }
 
-            Debug.Log("Player Speed Is " + playerSpeed);
+            //Debug.Log("Player Speed Is " + playerSpeed);
         }
 
         else if (!gasInput && playerSpeed >= 0)
@@ -100,7 +105,7 @@ public class MoveCar : MonoBehaviour
             {
                 playerSpeed = 0;
             }
-            Debug.Log("Player Speed Is Decelerating " + playerSpeed);
+            //Debug.Log("Player Speed Is Decelerating " + playerSpeed);
         }
 
         // Brake.
@@ -109,7 +114,7 @@ public class MoveCar : MonoBehaviour
             if (playerSpeed >= 0)
             {
                 playerSpeed -= brakeSpeed;
-                Debug.Log("Player is braking" + playerSpeed);
+                //Debug.Log("Player is braking" + playerSpeed);
                 // Set player speed to 0 if canDriveBackwards is disabled and the speed goes below 0.
                 if (!canDriveBackwards && playerSpeed < 0)
                 {
@@ -118,6 +123,23 @@ public class MoveCar : MonoBehaviour
             }
         }
     }
+
+    /// <summary>
+    /// Check if the car is on the road.
+    /// </summary>
+    private bool CheckCarIsOnRoad()
+    {
+        if (myCollider.IsTouchingLayers(roadLayer))
+        {
+            isOnRoad = true;
+        }
+        else
+        {
+            isOnRoad = false;
+        }
+        return isOnRoad;
+    }
+
     #endregion
     #region Control Car "Turning"
     /// <summary>
