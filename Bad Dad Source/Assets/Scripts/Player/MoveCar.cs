@@ -15,8 +15,9 @@ public class MoveCar : MonoBehaviour
     float playerSpeed = 1f, maxPlayerSpeed, acceleration = 10f, deceleration = 2f, brakeSpeed = 200f,
             playerHorizontalSpeed = 0.008f;
     float turnInput;
-    bool gasInput, brakeInput;
+    bool gasInput, brakeInput, isOnRoad = true;
     Rigidbody2D rb;
+    [SerializeField] Collider2D road;
     [Space] [Header("Allow Player To Drive Backwards")]
     [SerializeField] bool canDriveBackwards = false;
 
@@ -46,8 +47,15 @@ public class MoveCar : MonoBehaviour
     private void DriveCar()
     {
         Inputs();
-        SetPlayerSpeed();
+        SetPlayerSpeed(isOnRoad);
         TurnCar(turnInput);
+        OnTriggerExit2D(road);
+    }
+
+    
+    void OnTriggerExit2D(Collider2D road)
+    {
+        isOnRoad = false;
     }
 
     #region Control Car Moving "Forward"
@@ -67,8 +75,9 @@ public class MoveCar : MonoBehaviour
     /// <summary>
     /// This method will be used to control the player speed using the Gas and Brake inputs.
     /// </summary>
-    private void SetPlayerSpeed()
+    private void SetPlayerSpeed(bool isOnRoad)
     {
+
         // Speed up.
         if (gasInput)
         {
