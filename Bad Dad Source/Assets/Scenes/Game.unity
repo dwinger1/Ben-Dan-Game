@@ -612,7 +612,7 @@ PrefabInstance:
     - target: {fileID: 490655981008768204, guid: 33840c6cb67689f4a9f89e3c07e63006,
         type: 3}
       propertyPath: playerHorizontalSpeed
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 490655981008768205, guid: 33840c6cb67689f4a9f89e3c07e63006,
         type: 3}
